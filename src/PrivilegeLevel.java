@@ -1,2 +1,2 @@
-public enum PrivilegeLevel {ADMINISTRATOR, CASHIER, TRAINER
+public enum PrivilegeLevel {ADMINISTRATOR, CASHIER, TRAINER, ERROR
 }
