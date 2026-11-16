@@ -1,6 +1,7 @@
 public class Cashier extends Staff{
 
-    public Cashier(String name, int id, PrivilegeLevel privilegeLevel, String password) {
-        super(name, id, privilegeLevel, password);
+    public Cashier(String name, int id, String password) {
+        super(name, id, password);
+        this.privilegeLevel = 2;
     }
 }
