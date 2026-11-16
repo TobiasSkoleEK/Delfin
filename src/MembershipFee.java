@@ -19,8 +19,7 @@ public class MembershipFee {
     public int calculateRate(){
         if (activityType == ActivityType.Passive){
             return passiveRate;
-        }
-        if (activityType == ActivityType.Exercise) {
+        } else if (activityType == ActivityType.Exercise) {
             if (age < 18) {
                 return youthRate;
             } else if (age >= 18 && age < 60) {
