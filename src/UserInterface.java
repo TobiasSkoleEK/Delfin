@@ -74,12 +74,10 @@ public class UserInterface {
             case "2." -> displayRestanceList();
             case "3." -> displayReports();
             case "4." -> displayProjections();
-            case "b." -> back();
-            case "e." -> exit();
         }
     }
         private void displayAccount(){
-            IO.println("///All accounts///");
+            IO.println("///Accounts///");
             if (delfin.getDuesList().isEmpty()){
                 IO.println("List is empty");
             }
@@ -89,7 +87,7 @@ public class UserInterface {
         }
 
         private void displayRestanceList(){
-            IO.println("///All Restance///");
+            IO.println("///Restance///");
             if (delfin.getRestance().isEmpty()){
                 IO.println("List is empty");
             }
@@ -99,9 +97,14 @@ public class UserInterface {
         }
 
         private void displayReports(){
-            IO.println("///All Reports///");
+            IO.println("///Reports///");
             IO.println("Total dues paid: " + delfin.totalPaid() + " kr.");
             IO.println("Total dues owed: " + delfin.totalOwed() + " kr.");
+        }
+
+        private void displayProjections(){
+            IO.println("///Projections///");
+            IO.println("Total dues expected: " + delfin.totalPaid() + " kr.");
         }
 
 
