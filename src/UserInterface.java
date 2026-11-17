@@ -98,6 +98,12 @@ public class UserInterface {
             }
         }
 
+        private void displayReports(){
+            IO.println("///All Reports///");
+            IO.println("Total dues paid: " + delfin.totalPaid() + " kr.");
+            IO.println("Total dues owed: " + delfin.totalOwed() + " kr.");
+        }
+
 
 
     // Trainer Menus //
