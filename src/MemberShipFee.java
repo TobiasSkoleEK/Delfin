@@ -11,6 +11,7 @@ public class MemberShipFee {
     private final int seniorDiscount = 25;
     private final ActivityType activityType;
     private boolean paid;
+    private boolean isOverDue;
     private LocalDate dueDate;
 
     // David: I made an alternative constructor that only requires 1 argument, and no knowledge of the members values
@@ -29,6 +30,8 @@ public class MemberShipFee {
         this.paid = paid;
         // When making an object you can set the due date based on current date +- days, can also test lateness.
         setDueDate(dueDateDays);
+        // Calculates if duedate is after current date ONLY if also NOT paid.
+        this.isOverDue = isOverDue();
     }
 
 
@@ -71,6 +74,10 @@ public class MemberShipFee {
         return paid;
     }
 
+    public boolean getRestance(){
+        return isOverDue;
+    }
+
     // Setters
 
     public void setPaid(Boolean trueFalse){
@@ -78,8 +85,18 @@ public class MemberShipFee {
     }
 
     // dueDate
+
     // This function can also be used to test restance by giving a negative amount of days making it late.
     public void setDueDate (int CurrentDatePlusDays){
         dueDate = LocalDate.now().plusDays(CurrentDatePlusDays);
+    }
+
+    public boolean isOverDue(){
+        return (LocalDate.now().isAfter(dueDate) && !paid);
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + name + "\t Rate: " + rate + "\t Due Date: " + dueDate + "\t Is paid: " + paid + "\t Is overdue: " + isOverDue + "\n";
     }
 }
