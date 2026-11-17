@@ -1,14 +1,14 @@
 public class UserInterface {
     private Delfin delfin = new Delfin();
+    boolean isRunning = true;
     // Note: Menu methods in bottom
     // Program Start //
 
     public void run(){
-        boolean isRunning = true;
         while (isRunning) {
             String username = menuLogin();
             displayMain();
-            isRunning = false;
+           // isRunning = false;
             }
 
         }
@@ -59,21 +59,24 @@ public class UserInterface {
     // Cashier Menus //
 
     private void displayFinance() {
-        IO.println("///Finance Menu///");
-        IO.println("1. Accounts");
-        IO.println("2. Restance List");
-        IO.println("3. Reports");
-        IO.println("4. Projections");
-        IO.println("b. Back");
-        IO.println("e. Exit");
+        boolean inDisplayFinance = true;
+        while (inDisplayFinance && isRunning) {
+            IO.println("///Finance Menu///");
+            IO.println("1. Accounts");
+            IO.println("2. Restance List");
+            IO.println("3. Reports");
+            IO.println("4. Projections");
+            IO.println("b. Back");
+            IO.println("e. Exit");
 
-        String display = IO.readln("Input Command: ").trim().toLowerCase();
-
-        switch (display){
-            case "1." -> displayAccount();
-            case "2." -> displayRestanceList();
-            case "3." -> displayReports();
-            case "4." -> displayProjections();
+            switch (input()) {
+                case "1" -> displayAccount();
+                case "2" -> displayRestanceList();
+                case "3" -> displayReports();
+                case "4" -> displayProjections();
+                case "b" -> inDisplayFinance = false;
+                case "e" -> isRunning = false;
+            }
         }
     }
         private void displayAccount(){
