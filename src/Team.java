@@ -19,13 +19,13 @@ public class Team {
     public void addResult(Result resultNew){
         resultList.add(resultNew);
     }
-    public List<Member> seeMembers(){
+    public List<Member> getMemberList(){
         return memberList;
     }
-    public List<Staff> seeStaff(){
+    public List<Staff> getStaffList(){
         return staffList;
     }
-    public List<Result> seeResults(){
+    public List<Result> getResultList(){
         return resultList;
     }
 
