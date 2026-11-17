@@ -88,6 +88,17 @@ public class UserInterface {
             }
         }
 
+        private void displayRestanceList(){
+            IO.println("///All Restance///");
+            if (delfin.getRestance().isEmpty()){
+                IO.println("List is empty");
+            }
+            for (MemberShipFee restanceList : delfin.getRestance()){
+                IO.println(restanceList);
+            }
+        }
+
+
 
     // Trainer Menus //
 
