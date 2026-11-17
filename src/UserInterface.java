@@ -1,5 +1,5 @@
 public class UserInterface {
-
+    private Delfin delfin = new Delfin();
     // Note: Menu methods in bottom
     // Program Start //
 
@@ -67,7 +67,27 @@ public class UserInterface {
         IO.println("b. Back");
         IO.println("e. Exit");
 
+        String display = IO.readln("Input Command: ").trim().toLowerCase();
+
+        switch (display){
+            case "1." -> displayAccount();
+            case "2." -> displayRestanceList();
+            case "3." -> displayReports();
+            case "4." -> displayProjections();
+            case "b." -> back();
+            case "e." -> exit();
+        }
     }
+        private void displayAccount(){
+            IO.println("///All accounts///");
+            if (delfin.getDuesList().isEmpty()){
+                IO.println("List is empty");
+            }
+            for (MemberShipFee feeList : delfin.getDuesList()){
+                IO.println(feeList);
+            }
+        }
+
 
     // Trainer Menus //
 
