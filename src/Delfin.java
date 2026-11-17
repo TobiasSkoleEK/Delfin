@@ -1,8 +1,10 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Delfin {
-    private List<Member> memberList;
-    private List<Staff> staffList;
+    List<Member> memberList = new ArrayList<Member>();
+    List<Staff> staffList = new ArrayList<Staff>();
+    List<MemberShipFee> duesList = new ArrayList<MemberShipFee>();
 
     // --- Adders ---
     void addMember(Member member) {
@@ -56,4 +58,56 @@ public class Delfin {
         Member member = getMember(id);
         member.setActivityType(activityType);
     }
+
+    // --- Cashier Commands ---
+
+    // Clears due list and recreates it based on member list, currently everything is paid and overdue is false
+    public void createMemberDues(){
+        duesList.clear();
+        for (Member member: memberList){
+            duesList.add(new MemberShipFee(member, true, 0));
+        }
+    }
+
+    //Returns the list of dues
+    public List<MemberShipFee> getDuesList() {
+        return duesList;
+    }
+
+    //Cashier can extent dueDates or shorten them for testing
+    public void setFeeDueDate (MemberShipFee member, int Days){
+        member.setDueDate(Days);
+    }
+
+    //Cashier can change a members status to paid once paid.
+    public void setFeePaid (MemberShipFee member, boolean trueFalse){
+        member.setPaid(trueFalse);
+    }
+
+    //Function to show total amount of expected dues
+    public int totalPaid(){
+        int total = 0;
+        for (MemberShipFee fee: duesList){
+            total += fee.getRate();
+        }
+        return total;
+    }
+
+    //Function to show total amount unpaid dues
+    public int totalOwed(){
+        int total = 0;
+        for (MemberShipFee fee: getRestance()){
+            total += fee.getRate();
+        }
+        return total;
+    }
+
+    // This functions creates a new list based on the duesList condition isOveDue, then returns only those
+    // where it is true giving a list of those who are late.
+    public List<MemberShipFee> getRestance() {
+        return duesList.stream().filter(MemberShipFee::isOverDue).toList();
+    }
+
+
+
 }
