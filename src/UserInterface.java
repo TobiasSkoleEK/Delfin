@@ -7,8 +7,9 @@ public class UserInterface {
     // Note: Menu methods in bottom
     // Program Start //
 
+    boolean isRunning = true;
+
     public void run(){
-        boolean isRunning = true;
         while (isRunning) {
             String username = menuLogin();
             displayMain();
@@ -42,7 +43,7 @@ public class UserInterface {
             case "1" -> displayMember();
             case "2" -> displayFinance();
             case "3" -> displayCompetition();
-            case "e" -> IO.println("Terminating Program");
+            case "e" -> exit();
         }
 
     }
@@ -87,5 +88,8 @@ public class UserInterface {
         return IO.readln("Input: ").toLowerCase().trim();
     }
 
-
+    private void exit() {
+        IO.println("Terminating Program");
+        isRunning = false;
+    }
 }
