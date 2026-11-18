@@ -3,6 +3,7 @@ import java.util.List;
 public class Delfin {
     private List<Member> memberList;
     private List<Staff> staffList;
+    private List<Team> teamList;
 
     // --- Adders ---
     void addMember(Member member) {
@@ -13,6 +14,10 @@ public class Delfin {
         staffList.add(staff);
     }
 
+    void addTeam(Team team) {
+        teamList(team);
+    }
+
     // --- Removers ---
     void removeMember(Member member) {
         memberList.remove(member);
@@ -20,6 +25,10 @@ public class Delfin {
 
     void removeStaff(Staff staff) {
         staffList.remove(staff);
+    }
+
+    void removeTeam(Team team) {
+        teamList.remove(team);
     }
 
     // --- Getters ---
