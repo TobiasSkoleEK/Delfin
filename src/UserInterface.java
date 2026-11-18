@@ -128,6 +128,43 @@ public class UserInterface {
         delfin.addMember(member);
     }
 
+    private void editMember() {
+        IO.println("///Edit Member Activity///");
+
+        int id;
+        try {
+            id = Integer.parseInt(IO.readln("Member ID: "));
+        } catch (NumberFormatException e) {
+            IO.println("Invalid ID — must be a number.");
+            return;
+        }
+
+        Member member = delfin.getMember(id);
+        if (member == null) {
+            IO.println("No member with ID " + id);
+            return;
+        }
+
+        IO.println("Member: " + member.getName());
+        IO.println("Current activity: " + member.getActivityType());
+
+        ActivityType activity;
+        try {
+            activity = ActivityType.valueOf(IO.readln("New activity (Passive - Exercise - Tournament): "));
+        } catch (IllegalArgumentException e) {
+            IO.println("Invalid activity type.");
+            return;
+        }
+
+        if (activity == ActivityType.Error) {
+            IO.println("Invalid activity type.");
+            return;
+        }
+
+        delfin.setActivityType(id, activity);
+        IO.println("Activity updated to " + activity);
+    }
+
     // Cashier Menus //
 
     private void displayFinance() {
