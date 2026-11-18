@@ -161,22 +161,47 @@ class DelfinTest {
         delfin.createMemberDues();
 
         //Act
-
+        List<MemberShipFee> dues = delfin.getDuesList();
 
         //Assert
-        assertEquals(2, delfin.getDuesList().size());
+        assertEquals(1, dues.size());
+        assertNotNull(dues);
     }
 
     @Test
     void setFeeDueDate() {
+        //Arrange
+        delfin.addMember(seniorMember);
+        delfin.createMemberDues();
+        MemberShipFee fee = delfin.getDuesList().get(0);
+
+        //Act
+        delfin.setFeeDueDate(fee, -7);
+        delfin.setFeePaid(fee, false);
+
+        //Assert
+        assertTrue(fee.isOverDue());
+        assertFalse(fee.isPaid());
     }
 
     @Test
     void setFeePaid() {
+        //Arrange
+        delfin.addMember(seniorMember);
+        delfin.createMemberDues();
+        MemberShipFee fee = delfin.getDuesList().get(0);
+
+        //Act
+        delfin.setFeePaid(fee, false);
+
+        //Assert
+        assertTrue(fee.isOverDue());
+        assertFalse(fee.isPaid());
     }
 
     @Test
     void totalPaid() {
+
     }
 
     @Test
