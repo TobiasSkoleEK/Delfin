@@ -13,7 +13,6 @@ public class UserInterface {
         while (isRunning) {
             String username = menuLogin();
             displayMain();
-            isRunning = false;
             }
 
         }
