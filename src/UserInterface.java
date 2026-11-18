@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class UserInterface {
     Delfin delfin;
 
@@ -59,6 +61,29 @@ public class UserInterface {
         IO.println("b. Back");
         IO.println("e. Exit");
 
+        switch(input()){
+            case "1" -> viewMembers();
+            case "2" -> addMember();
+            case "3" -> editMember();
+            //case "4" -> removeMember();
+            case "e" -> exit();
+        }
+    }
+
+    private void viewMembers() {
+        List<Member> members = delfin.getMembers();
+
+        if (members.isEmpty())
+        {
+            IO.println("No current members");
+            return;
+        }
+
+        IO.println("//Member List//");
+        for (Member member : members)
+        {
+            IO.println(member.getID() + ", " + member.getName() + ", " + member.getActivityType() + ", " + member.getBirthDate() + "(" + member.getAge() + ")");
+        }
     }
 
     // Cashier Menus //
