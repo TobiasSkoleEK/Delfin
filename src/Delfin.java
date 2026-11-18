@@ -54,9 +54,13 @@ public class Delfin {
     }
 
     // --- Setters ---
-    public void setActivityType(int id, ActivityType activityType) {
+    public boolean setActivityType(int id, ActivityType activityType) {
         Member member = getMember(id);
+        if (member == null) {
+            return false;
+        }
         member.setActivityType(activityType);
+        return true;
     }
 
     // --- Cashier Commands ---
