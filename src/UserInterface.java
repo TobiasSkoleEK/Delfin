@@ -67,7 +67,7 @@ public class UserInterface {
             case "1" -> viewMembers();
             case "2" -> addMember();
             case "3" -> editMember();
-            //case "4" -> removeMember();
+            case "4" -> removeMember();
             case "e" -> exit();
         }
     }
@@ -163,6 +163,22 @@ public class UserInterface {
 
         delfin.setActivityType(id, activity);
         IO.println("Activity updated to " + activity);
+    }
+
+    private void removeMember() {
+        IO.println("///Remove Member///");
+        int id;
+
+        // ID
+        try {
+            id = Integer.parseInt(IO.readln("ID: "));
+        } catch (NumberFormatException e) {
+            IO.println("Invalid ID — must be a number.");
+            return;
+        }
+
+        Member member = delfin.getMember(id);
+        delfin.removeMember(member);
     }
 
     // Cashier Menus //
