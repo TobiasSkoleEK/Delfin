@@ -1,5 +1,9 @@
 public class UserInterface {
+    Delfin delfin;
 
+    public UserInterface(Delfin delfin) {
+        this.delfin = delfin;
+    }
     // Note: Menu methods in bottom
     // Program Start //
 

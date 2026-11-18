@@ -5,7 +5,7 @@ void main() {
     Staff coach = new Staff("Jesus", 3, "password", PrivilegeLevel.TRAINER);
 
     Delfin delfin = new Delfin();
-    UserInterface UI = new UserInterface();
+    UserInterface UI = new UserInterface(delfin);
 
     // Quick Test Data
 
