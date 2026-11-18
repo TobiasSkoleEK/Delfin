@@ -87,34 +87,84 @@ class DelfinTest {
 
     @Test
     void getMembers() {
+        //Arrange
+        delfin.addMember(youthMember);
+        delfin.addMember(seniorMember);
+
+        //Act
+        List<Member> members = delfin.getMembers();
+
+        //Assert
+        assertEquals(2, members);
+        assertTrue(members.contains(List.of(youthMember, seniorMember)));
     }
 
     @Test
     void getName() {
+        //Assert
+        assertEquals("Anders Andersen", youthMember.getName());
+        assertNotNull(youthMember.getName());
     }
 
     @Test
     void getID() {
+        //Assert
+        assertEquals(1, youthMember.getID());
+        assertNotNull(youthMember.getID());
     }
 
     @Test
     void getAge() {
+        //Assert
+        assertEquals(16, youthMember.getAge());
+        assertNotNull(youthMember.getAge());
     }
 
     @Test
     void getActivity() {
+        //Assert
+        assertEquals(ActivityType.Exercise, delfin.getActivity(youthMember));
     }
 
     @Test
     void setActivityType() {
+        //Arrange
+        delfin.addMember(youthMember);
+        int id = youthMember.getID();
+
+        //act
+        delfin.setActivityType(id, ActivityType.Passive);
+
+        //Assert
+        assertEquals(ActivityType.Passive, youthMember.getActivityType());
+        assertNotNull(youthMember.getActivityType());
     }
 
     @Test
     void createMemberDues() {
+        //Arrange
+        delfin.addMember(seniorMember);
+        delfin.addMember(youthMember);
+
+        //Act
+        delfin.createMemberDues();
+
+        //Assert
+        assertEquals(2, delfin.getDuesList().size());
+        assertTrue(delfin.getDuesList().contains(List.of(youthMember, seniorMember)));
     }
 
     @Test
     void getDuesList() {
+        //Arrange
+        delfin.addMember(seniorMember);
+        delfin.createMemberDues();
+
+        //Act
+
+
+        //Assert
+        assertEquals(2, delfin.getDuesList().size());
     }
 
     @Test
