@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +44,10 @@ public class Delfin {
 
     public int getID(Member member) {
         return member.getID();
+    }
+
+    public LocalDate getBirthDate(Member member) {
+        return member.getBirthDate();
     }
 
     public int getAge(Member member) {
