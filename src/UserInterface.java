@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 public class UserInterface {
@@ -84,6 +86,46 @@ public class UserInterface {
         {
             IO.println(member.getID() + ", " + member.getName() + ", " + member.getActivityType() + ", " + member.getBirthDate() + "(" + member.getAge() + ")");
         }
+    }
+
+    private void addMember() {
+        String name;
+        int id;
+        LocalDate birth;
+        ActivityType activity = ActivityType.Passive;
+
+        // Name
+        name = IO.readln("Name: ");
+
+        // ID
+        try {
+            id = Integer.parseInt(IO.readln("ID: "));
+        } catch (NumberFormatException e) {
+            IO.println("Invalid ID — must be a number.");
+            return;
+        }
+
+        // Birthdate
+        try {
+            birth = LocalDate.parse(IO.readln("Birthdate: "));
+        } catch (DateTimeParseException e) {
+            IO.println("Invalid date — Use format yyyy-mm-dd");
+            return;
+        }
+
+        // Activity
+        try {
+            String input = IO.readln("Activity (Passive - Exercise - Tournament): ");
+            if (!input.isEmpty()) {
+                activity = ActivityType.valueOf(input);
+            }
+        } catch (IllegalArgumentException e) {
+            IO.println("Invalid activity type.");
+            return;
+        }
+
+        Member member = new Member(name, id, birth, activity);
+        delfin.addMember(member);
     }
 
     // Cashier Menus //
