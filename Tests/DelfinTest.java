@@ -95,8 +95,8 @@ class DelfinTest {
         List<Member> members = delfin.getMembers();
 
         //Assert
-        assertEquals(2, members);
-        assertTrue(members.contains(List.of(youthMember, seniorMember)));
+        assertEquals(2, members.size());
+        assertTrue(members.containsAll(List.of(youthMember, seniorMember)));
     }
 
     @Test
@@ -151,7 +151,6 @@ class DelfinTest {
 
         //Assert
         assertEquals(2, delfin.getDuesList().size());
-        assertTrue(delfin.getDuesList().contains(List.of(youthMember, seniorMember)));
     }
 
     @Test
@@ -195,20 +194,59 @@ class DelfinTest {
         delfin.setFeePaid(fee, false);
 
         //Assert
-        assertTrue(fee.isOverDue());
         assertFalse(fee.isPaid());
     }
 
     @Test
     void totalPaid() {
+        //Arrange
+        delfin.addMember(seniorMember);
+        delfin.addMember(youthMember);
+        delfin.createMemberDues();
 
+        //Act
+        int totalAmount = 0;
+        for (MemberShipFee fee : delfin.getDuesList()){
+            totalAmount += fee.getRate();
+        }
+
+        //Arrange
+        assertEquals(totalAmount, delfin.totalPaid());
     }
 
     @Test
     void totalOwed() {
+        //Arrange
+        delfin.addMember(seniorMember);
+        delfin.addMember(youthMember);
+        delfin.createMemberDues();
+        MemberShipFee fee = delfin.getDuesList().get(0);
+
+        //Act
+        delfin.setFeeDueDate(fee, -7);
+        delfin.setFeePaid(fee, false);
+
+        //Arrange
+        assertEquals(fee.getRate(), delfin.totalOwed());
+        assertTrue(fee.isOverDue());
     }
 
     @Test
     void getRestance() {
+        //Arrange
+        delfin.addMember(seniorMember);
+        delfin.addMember(youthMember);
+        delfin.createMemberDues();
+        MemberShipFee fee = delfin.getDuesList().get(0);
+
+        //Act
+        delfin.setFeeDueDate(fee, -7);
+        delfin.setFeePaid(fee, false);
+        List<MemberShipFee> restance = delfin.getRestance();
+
+        //Assert
+        assertEquals(1, restance.size());
+        assertTrue(restance.contains(fee));
+        assertFalse(fee.isPaid());
     }
 }
