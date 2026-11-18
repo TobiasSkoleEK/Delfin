@@ -18,6 +18,10 @@ public class Member {
         return name;
     }
 
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
     public int getAge() {
         LocalDate today = LocalDate.now();
         int age = (int) ChronoUnit.YEARS.between(birthDate, today);
