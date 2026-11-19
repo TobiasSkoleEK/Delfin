@@ -3,8 +3,11 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 
 public class UserInterface {
-    private Delfin delfin = new Delfin();
-    boolean isRunning = true;
+    private Delfin delfin;
+
+    public UserInterface(Delfin delfin) {
+        this.delfin = delfin;
+    }
     // Note: Menu methods in bottom
     // Program Start //
 
