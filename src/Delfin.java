@@ -96,7 +96,7 @@ public class Delfin {
     //Function to show total amount of expected dues
     public int totalPaid(){
         int total = 0;
-        for (MemberShipFee fee: duesList){
+        for (MemberShipFee fee: getPaid()){
             total += fee.getRate();
         }
         return total;
@@ -110,6 +110,11 @@ public class Delfin {
         }
         return total;
     }
+    
+    //Function to show totalOwed + totalPaid
+    public int totalExpected(){
+        return totalPaid() + totalOwed();
+    }
 
     // This functions creates a new list based on the duesList condition isOveDue, then returns only those
     // where it is true giving a list of those who are late.
@@ -117,6 +122,11 @@ public class Delfin {
         return duesList.stream().filter(MemberShipFee::isOverDue).toList();
     }
 
+    // This functions creates a new list based on the duesList condition isPaid, then returns only those
+    // where it is true giving a list of those who have not paid.
+    public List<MemberShipFee> getPaid() {
+        return duesList.stream().filter(MemberShipFee::isPaid).toList();
+    }
 
 
 }
