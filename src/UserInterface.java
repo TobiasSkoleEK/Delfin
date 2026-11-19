@@ -3,11 +3,8 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 
 public class UserInterface {
-    Delfin delfin;
-
-    public UserInterface(Delfin delfin) {
-        this.delfin = delfin;
-    }
+    private Delfin delfin = new Delfin();
+    boolean isRunning = true;
     // Note: Menu methods in bottom
     // Program Start //
 
@@ -183,15 +180,58 @@ public class UserInterface {
     // Cashier Menus //
 
     private void displayFinance() {
-        IO.println("///Finance Menu///");
-        IO.println("1. Accounts");
-        IO.println("2. Restance List");
-        IO.println("3. Reports");
-        IO.println("4. Projections");
-        IO.println("b. Back");
-        IO.println("e. Exit");
+        boolean inDisplayFinance = true;
+        while (inDisplayFinance && isRunning) {
+            IO.println("///Finance Menu///");
+            IO.println("1. Accounts");
+            IO.println("2. Restance List");
+            IO.println("3. Reports");
+            IO.println("4. Projections");
+            IO.println("b. Back");
+            IO.println("e. Exit");
 
+            switch (input()) {
+                case "1" -> displayAccount();
+                case "2" -> displayRestanceList();
+                case "3" -> displayReports();
+                case "4" -> displayProjections();
+                case "b" -> inDisplayFinance = false;
+                case "e" -> isRunning = false;
+            }
+        }
     }
+        private void displayAccount(){
+            IO.println("///Accounts///");
+            if (delfin.getDuesList().isEmpty()){
+                IO.println("List is empty");
+            }
+            for (MemberShipFee feeList : delfin.getDuesList()){
+                IO.println(feeList);
+            }
+        }
+
+        private void displayRestanceList(){
+            IO.println("///Restance///");
+            if (delfin.getRestance().isEmpty()){
+                IO.println("List is empty");
+            }
+            for (MemberShipFee restanceList : delfin.getRestance()){
+                IO.println(restanceList);
+            }
+        }
+
+        private void displayReports(){
+            IO.println("///Reports///");
+            IO.println("Total dues paid: " + delfin.totalPaid() + " kr.");
+            IO.println("Total dues owed: " + delfin.totalOwed() + " kr.");
+        }
+
+        private void displayProjections(){
+            IO.println("///Projections///");
+            IO.println("Total dues expected: " + delfin.totalPaid() + " kr.");
+        }
+
+
 
     // Trainer Menus //
 
