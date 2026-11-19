@@ -1,14 +1,19 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.util.List;
+
 public class UserInterface {
     private Delfin delfin = new Delfin();
     boolean isRunning = true;
     // Note: Menu methods in bottom
     // Program Start //
 
+    boolean isRunning = true;
+
     public void run(){
         while (isRunning) {
             String username = menuLogin();
             displayMain();
-           // isRunning = false;
             }
 
         }
@@ -38,7 +43,7 @@ public class UserInterface {
             case "1" -> displayMember();
             case "2" -> displayFinance();
             case "3" -> displayCompetition();
-            case "e" -> IO.println("Terminating Program");
+            case "e" -> exit();
         }
 
     }
@@ -54,6 +59,122 @@ public class UserInterface {
         IO.println("b. Back");
         IO.println("e. Exit");
 
+        switch(input()){
+            case "1" -> viewMembers();
+            case "2" -> addMember();
+            case "3" -> editMember();
+            case "4" -> removeMember();
+            case "e" -> exit();
+        }
+    }
+
+    private void viewMembers() {
+        List<Member> members = delfin.getMembers();
+
+        if (members.isEmpty())
+        {
+            IO.println("No current members");
+            return;
+        }
+
+        IO.println("//Member List//");
+        for (Member member : members)
+        {
+            IO.println(member.getID() + ", " + member.getName() + ", " + member.getActivityType() + ", " + member.getBirthDate() + "(" + member.getAge() + ")");
+        }
+    }
+
+    private void addMember() {
+        String name;
+        int id;
+        LocalDate birth;
+        ActivityType activity = ActivityType.Passive;
+
+        // Name
+        name = IO.readln("Name: ");
+
+        // ID
+        try {
+            id = Integer.parseInt(IO.readln("ID: "));
+        } catch (NumberFormatException e) {
+            IO.println("Invalid ID — must be a number.");
+            return;
+        }
+
+        // Birthdate
+        try {
+            birth = LocalDate.parse(IO.readln("Birthdate: "));
+        } catch (DateTimeParseException e) {
+            IO.println("Invalid date — Use format yyyy-mm-dd");
+            return;
+        }
+
+        // Activity
+        try {
+            String input = IO.readln("Activity (Passive - Exercise - Tournament): ");
+            if (!input.isEmpty()) {
+                activity = ActivityType.valueOf(input);
+            }
+        } catch (IllegalArgumentException e) {
+            IO.println("Invalid activity type.");
+            return;
+        }
+
+        Member member = new Member(name, id, birth, activity);
+        delfin.addMember(member);
+    }
+
+    private void editMember() {
+        IO.println("///Edit Member Activity///");
+
+        int id;
+        try {
+            id = Integer.parseInt(IO.readln("Member ID: "));
+        } catch (NumberFormatException e) {
+            IO.println("Invalid ID — must be a number.");
+            return;
+        }
+
+        Member member = delfin.getMember(id);
+        if (member == null) {
+            IO.println("No member with ID " + id);
+            return;
+        }
+
+        IO.println("Member: " + member.getName());
+        IO.println("Current activity: " + member.getActivityType());
+
+        ActivityType activity;
+        try {
+            activity = ActivityType.valueOf(IO.readln("New activity (Passive - Exercise - Tournament): "));
+        } catch (IllegalArgumentException e) {
+            IO.println("Invalid activity type.");
+            return;
+        }
+
+        if (activity == ActivityType.Error) {
+            IO.println("Invalid activity type.");
+            return;
+        }
+
+        delfin.setActivityType(id, activity);
+        IO.println("Activity updated to " + activity);
+    }
+
+    private void removeMember() {
+        IO.println("///Remove Member///");
+        int id;
+
+        // ID
+        try {
+            id = Integer.parseInt(IO.readln("ID: "));
+        } catch (NumberFormatException e) {
+            IO.println("Invalid ID — must be a number.");
+            return;
+        }
+
+        Member member = delfin.getMember(id);
+        delfin.removeMember(member);
     }
 
     // Cashier Menus //
@@ -126,5 +247,8 @@ public class UserInterface {
         return IO.readln("Input: ").toLowerCase().trim();
     }
 
-
+    private void exit() {
+        IO.println("Terminating Program");
+        isRunning = false;
+    }
 }

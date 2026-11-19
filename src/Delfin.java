@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +46,10 @@ public class Delfin {
         return member.getID();
     }
 
+    public LocalDate getBirthDate(Member member) {
+        return member.getBirthDate();
+    }
+
     public int getAge(Member member) {
         return member.getAge();
     }
@@ -54,9 +59,13 @@ public class Delfin {
     }
 
     // --- Setters ---
-    public void setActivityType(int id, ActivityType activityType) {
+    public boolean setActivityType(int id, ActivityType activityType) {
         Member member = getMember(id);
+        if (member == null) {
+            return false;
+        }
         member.setActivityType(activityType);
+        return true;
     }
 
     // --- Cashier Commands ---
