@@ -39,4 +39,12 @@ public class Member {
     public void setActivityType(ActivityType activityType) {
         this.activityType = activityType;
     }
+
+    @Override
+    public String toString() {
+        return "\t Name: " + getName()
+                + "\t ID: " + getID()
+                + "\t Age: " + getAge()
+                + "\t Activity: " + getActivityType() + "\n";
+    }
 }
