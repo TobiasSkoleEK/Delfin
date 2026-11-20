@@ -231,7 +231,7 @@ public class UserInterface {
 
         private void displayProjections(){
             IO.println("///Projections///");
-            IO.println("Total dues expected: " + delfin.totalPaid() + " kr.");
+            IO.println("Total dues expected: " + delfin.totalExpected() + " kr.");
         }
 
 

@@ -18,6 +18,11 @@ void main() {
     delfin.addMember(member3);
 
     delfin.createMemberDues();
+    // Quick test data for finance
+    MemberShipFee fee = delfin.getDuesList().get(0);
+    delfin.setFeeDueDate(fee, -14);
+    delfin.setFeePaid(fee, false);
+    //-------------------------------------------------
     IO.println(delfin.getDuesList());
 
     // Program Start
