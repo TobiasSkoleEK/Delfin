@@ -33,19 +33,22 @@ public class MemberShipFee {
         this.isOverDue = isOverDue();
     }
 
-
-    // Calculates what fee members need to pay based on age and acitivty.
     public int calculateRate() {
-        if (membership == Membership.Passive){
-            return passiveRate;
-        } else if (membership == Membership.Exercise) {
-            if (age < 18) {
-                return youthRate;
-            } else if (age >= 18 && age < 60) {
-                return seniorRate;
-            } else {
-                int discount = seniorRate * seniorDiscount / 100;
-                return seniorRate - discount;
+        switch (membership) {
+            case Passive -> {if ( age < 60) {
+                return passiveRate; }
+                else {
+                    int discountPas = passiveRate * seniorDiscount / 100;
+                    return passiveRate - discountPas;
+                }
+            }
+            case Exercise -> {
+                if (age < 18) { return youthRate;}
+                else if (age < 60) { return seniorRate;}
+                else {
+                    int discount = seniorRate * seniorDiscount / 100;
+                    return seniorRate - discount;
+                }
             }
         }
         return 0;
