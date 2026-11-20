@@ -9,7 +9,7 @@ public class StaffTest {
     @BeforeEach
     void SetUp() {
         //arrange
-        staff = new Staff("Paul", 111, "Password", PrivilegeLevel.ADMINISTRATOR);
+        staff = new Staff("Paul", 111, "Password", PrivilegeLevel.Administrator);
     }
 
     @Test
@@ -86,7 +86,7 @@ public class StaffTest {
         //act
         PrivilegeLevel result = staff.getPrivilegeLevel();
         //assert
-        assertEquals(PrivilegeLevel.ADMINISTRATOR, result);
+        assertEquals(PrivilegeLevel.Administrator, result);
     }
 
     @Test
@@ -94,6 +94,6 @@ public class StaffTest {
         //act
         PrivilegeLevel result = staff.getPrivilegeLevel();
         //assert
-        assertNotEquals(PrivilegeLevel.CASHIER, result);
+        assertNotEquals(PrivilegeLevel.Cashier, result);
     }
 }

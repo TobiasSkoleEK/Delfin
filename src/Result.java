@@ -45,7 +45,7 @@ public class Result {
         return discipline;
     }
 
-    public boolean isTournament(){
+    public boolean isTournament() {
         return isTournament;
     }
 

@@ -2,20 +2,20 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 
-public class UserInterface {
-    private Delfin delfin;
+public class ConsoleUI {
+    private Controller delfin;
 
-    public UserInterface(Delfin delfin) {
-        this.delfin = delfin;
+    public ConsoleUI(Controller controller) {
+        this.delfin = controller;
     }
     // Note: Menu methods in bottom
     // Program Start //
 
     boolean isRunning = true;
 
-    public void run(){
+    public void run() {
         while (isRunning) {
-            String username = menuLogin();
+            //String username = menuLogin();
             displayMain();
             }
 
@@ -62,7 +62,7 @@ public class UserInterface {
         IO.println("b. Back");
         IO.println("e. Exit");
 
-        switch(input()){
+        switch(input()) {
             case "1" -> viewMembers();
             case "2" -> addMember();
             case "3" -> editMember();
@@ -74,15 +74,13 @@ public class UserInterface {
     private void viewMembers() {
         List<Member> members = delfin.getMembers();
 
-        if (members.isEmpty())
-        {
+        if (members.isEmpty()) {
             IO.println("No current members");
             return;
         }
 
         IO.println("//Member List//");
-        for (Member member : members)
-        {
+        for (Member member : members) {
             IO.println(member.getID() + ", " + member.getName() + ", " + member.getActivityType() + ", " + member.getBirthDate() + "(" + member.getAge() + ")");
         }
     }
@@ -91,7 +89,7 @@ public class UserInterface {
         String name;
         int id;
         LocalDate birth;
-        ActivityType activity = ActivityType.Passive;
+        Membership activity = Membership.Passive;
 
         // Name
         name = IO.readln("Name: ");
@@ -116,7 +114,7 @@ public class UserInterface {
         try {
             String input = IO.readln("Activity (Passive - Exercise - Tournament): ");
             if (!input.isEmpty()) {
-                activity = ActivityType.valueOf(input);
+                activity = Membership.valueOf(input);
             }
         } catch (IllegalArgumentException e) {
             IO.println("Invalid activity type.");
@@ -147,15 +145,10 @@ public class UserInterface {
         IO.println("Member: " + member.getName());
         IO.println("Current activity: " + member.getActivityType());
 
-        ActivityType activity;
+        Membership activity;
         try {
-            activity = ActivityType.valueOf(IO.readln("New activity (Passive - Exercise - Tournament): "));
+            activity = Membership.valueOf(IO.readln("New activity (Passive - Exercise - Tournament): "));
         } catch (IllegalArgumentException e) {
-            IO.println("Invalid activity type.");
-            return;
-        }
-
-        if (activity == ActivityType.Error) {
             IO.println("Invalid activity type.");
             return;
         }
@@ -195,7 +188,7 @@ public class UserInterface {
 
             switch (input()) {
                 case "1" -> displayAccount();
-                case "2" -> displayRestanceList();
+                case "2" -> displayOverduePayments();
                 case "3" -> displayReports();
                 case "4" -> displayProjections();
                 case "b" -> inDisplayFinance = false;
@@ -203,38 +196,36 @@ public class UserInterface {
             }
         }
     }
-        private void displayAccount(){
+        private void displayAccount() {
             IO.println("///Accounts///");
             if (delfin.getDuesList().isEmpty()){
                 IO.println("List is empty");
             }
-            for (MemberShipFee feeList : delfin.getDuesList()){
-                IO.println(feeList);
+            for (MemberShipFee fee : delfin.getDuesList()){
+                IO.println(fee);
             }
         }
 
-        private void displayRestanceList(){
-            IO.println("///Restance///");
-            if (delfin.getRestance().isEmpty()){
+        private void displayOverduePayments() {
+            IO.println("///Overdue Payments///");
+            if (delfin.getOverduePayments().isEmpty()){
                 IO.println("List is empty");
             }
-            for (MemberShipFee restanceList : delfin.getRestance()){
-                IO.println(restanceList);
+            for (MemberShipFee overduePayment : delfin.getOverduePayments()){
+                IO.println(overduePayment);
             }
         }
 
-        private void displayReports(){
+        private void displayReports() {
             IO.println("///Reports///");
             IO.println("Total dues paid: " + delfin.totalPaid() + " kr.");
             IO.println("Total dues owed: " + delfin.totalOwed() + " kr.");
         }
 
-        private void displayProjections(){
+        private void displayProjections() {
             IO.println("///Projections///");
             IO.println("Total dues expected: " + delfin.totalExpected() + " kr.");
         }
-
-
 
     // Trainer Menus //
 
@@ -246,7 +237,7 @@ public class UserInterface {
 
     }
 
-    private String input(){
+    private String input() {
         return IO.readln("Input: ").toLowerCase().trim();
     }
 

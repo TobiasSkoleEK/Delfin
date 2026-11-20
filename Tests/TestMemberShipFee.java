@@ -9,7 +9,7 @@ public class TestMemberShipFee {
     @Test
     void testToString (){
         //Arrange
-        Member member = new Member("Per", 12, LocalDate.now(), ActivityType.Passive);
+        Member member = new Member("Per", 12, LocalDate.now(), Membership.Passive);
         MemberShipFee fee1 = new MemberShipFee(member, true, 10);
         //Act
         IO.println(fee1);

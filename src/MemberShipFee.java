@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.time.temporal.TemporalAmount;
 
 public class MemberShipFee {
     private final int age;
@@ -9,7 +8,7 @@ public class MemberShipFee {
     private final int passiveRate = 500;
     private final int rate;
     private final int seniorDiscount = 25;
-    private final ActivityType activityType;
+    private final Membership membership;
     private boolean paid;
     private boolean isOverDue;
     private LocalDate dueDate;
@@ -24,7 +23,7 @@ public class MemberShipFee {
 
     public MemberShipFee(Member member, boolean paid, int dueDateDays) {
         this.age = member.getAge();
-        this.activityType = member.getActivityType();
+        this.membership = member.getActivityType();
         this.name = member.getName();
         this.rate = calculateRate();
         this.paid = paid;
@@ -36,10 +35,10 @@ public class MemberShipFee {
 
 
     // Calculates what fee members need to pay based on age and acitivty.
-    public int calculateRate(){
-        if (activityType == ActivityType.Passive){
+    public int calculateRate() {
+        if (membership == Membership.Passive){
             return passiveRate;
-        } else if (activityType == ActivityType.Exercise) {
+        } else if (membership == Membership.Exercise) {
             if (age < 18) {
                 return youthRate;
             } else if (age >= 18 && age < 60) {
@@ -66,32 +65,32 @@ public class MemberShipFee {
         return age;
     }
 
-    public ActivityType getActivityType() {
-        return activityType;
+    public Membership getActivityType() {
+        return membership;
     }
 
-    public boolean isPaid(){
+    public boolean isPaid() {
         return paid;
     }
 
-    public boolean getRestance(){
+    public boolean getRestance() {
         return isOverDue;
     }
 
     // Setters
 
-    public void setPaid(Boolean trueFalse){
+    public void setPaid(Boolean trueFalse) {
         paid = trueFalse;
     }
 
     // dueDate
 
     // This function can also be used to test restance by giving a negative amount of days making it late.
-    public void setDueDate (int CurrentDatePlusDays){
+    public void setDueDate (int CurrentDatePlusDays) {
         dueDate = LocalDate.now().plusDays(CurrentDatePlusDays);
     }
 
-    public boolean isOverDue(){
+    public boolean isOverDue() {
         return (LocalDate.now().isAfter(dueDate) && !paid);
     }
 

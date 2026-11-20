@@ -1,17 +1,17 @@
 void main() {
 
-    Staff admin = new Staff("Paul", 1, "password", PrivilegeLevel.ADMINISTRATOR);
-    Staff cashier = new Staff("Peter", 2, "password", PrivilegeLevel.CASHIER);
-    Staff coach = new Staff("Jesus", 3, "password", PrivilegeLevel.TRAINER);
+    Staff admin = new Staff("Paul", 1, "password", PrivilegeLevel.Administrator);
+    Staff cashier = new Staff("Peter", 2, "password", PrivilegeLevel.Cashier);
+    Staff coach = new Staff("Jesus", 3, "password", PrivilegeLevel.Trainer);
 
-    Delfin delfin = new Delfin();
-    UserInterface UI = new UserInterface(delfin);
+    Controller delfin = new Controller();
+    ConsoleUI UI = new ConsoleUI(delfin);
 
     // Quick Test Data
 
-    Member member1 = new Member("Anders Andersen", 1,LocalDate.now().minusYears(16), ActivityType.Exercise);
-    Member member2 = new Member("Ole Andersen", 2,LocalDate.now().minusYears(19), ActivityType.Exercise);
-    Member member3 = new Member("Biver Andersen", 3,LocalDate.now().minusYears(70), ActivityType.Exercise);
+    Member member1 = new Member("Anders Andersen", 1,LocalDate.now().minusYears(16), Membership.Exercise);
+    Member member2 = new Member("Ole Andersen", 2,LocalDate.now().minusYears(19), Membership.Exercise);
+    Member member3 = new Member("Biver Andersen", 3,LocalDate.now().minusYears(70), Membership.Exercise);
 
     delfin.addMember(member1);
     delfin.addMember(member2);
