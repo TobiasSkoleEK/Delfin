@@ -30,9 +30,9 @@ public class Staff {
     @Override
     public String toString() {
         String privilege = "Trainer";
-        if (privilegeLevel.equals(PrivilegeLevel.ADMINISTRATOR)) {
+        if (privilegeLevel.equals(PrivilegeLevel.Administrator)) {
             privilege = "Admin";
-            if (privilegeLevel.equals(PrivilegeLevel.CASHIER)) {
+            if (privilegeLevel.equals(PrivilegeLevel.Cashier)) {
                 privilege = "Cashier";
             }
         }

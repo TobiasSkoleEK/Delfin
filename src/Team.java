@@ -14,16 +14,16 @@ public class Team {
     }
 
     //Adders
-    public void addMember(Member memberNew){
-        memberList.add(memberNew);
+    public void addMember(Member member) {
+        memberList.add(member);
     }
 
-    public void addStaff(Staff staffNew){
-        staffList.add(staffNew);
+    public void addStaff(Staff staff) {
+        staffList.add(staff);
     }
 
-    public void addResult(Result resultNew){
-        resultList.add(resultNew);
+    public void addResult(Result result) {
+        resultList.add(result);
     }
 
     //Getters
@@ -49,15 +49,15 @@ public class Team {
         return null;
     }
 
-    public List<Member> getMemberList(){
+    public List<Member> getMemberList() {
         return memberList;
     }
 
-    public List<Staff> getStaffList(){
+    public List<Staff> getStaffList() {
         return staffList;
     }
 
-    public List<Result> getResultList(){
+    public List<Result> getResultList() {
         return resultList;
     }
 

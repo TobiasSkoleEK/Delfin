@@ -2,13 +2,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Delfin {
+public class Controller {
     List<Member> memberList = new ArrayList<Member>();
     List<Staff> staffList = new ArrayList<Staff>();
     List<MemberShipFee> duesList = new ArrayList<MemberShipFee>();
     List<Team> teamList = new ArrayList<Team>();
 
-    // --- Adders ---
+    // --- Members ---
+    // Adders
     void addMember(Member member) {
         memberList.add(member);
     }
@@ -25,7 +26,7 @@ public class Delfin {
         team.addMember(member);
     }
 
-    // --- Removers ---
+    // Removers
     void removeMember(Member member) {
         memberList.remove(member);
     }
@@ -38,13 +39,14 @@ public class Delfin {
         teamList.remove(team);
     }
 
-    // --- Getters ---
+    // Getters
     public Member getMember(int ID) {
         for (Member member : memberList) {
             if (member.getID() == ID) {
                 return member;
             }
-        } return null;
+        }
+        return null;
     }
 
     public List<Member> getMembers() {
@@ -52,7 +54,7 @@ public class Delfin {
     }
 
     public String getName(Member member) {
-        return  member.getName();
+        return member.getName();
     }
 
     public int getID(Member member) {
@@ -67,7 +69,7 @@ public class Delfin {
         return member.getAge();
     }
 
-    public ActivityType getActivity(Member member) {
+    public Membership getActivity(Member member) {
         return member.getActivityType();
     }
 
@@ -80,68 +82,36 @@ public class Delfin {
         return null;
     }
 
-
-    // --- Setters ---
-    public boolean setActivityType(int id, ActivityType activityType) {
+    // Setters
+    public boolean setActivityType(int id, Membership membership) {
         Member member = getMember(id);
         if (member == null) {
             return false;
         }
-        member.setActivityType(activityType);
+        member.setActivityType(membership);
         return true;
     }
 
     // --- Cashier Commands ---
 
+    // Adders
     // Clears due list and recreates it based on member list, currently everything is paid and overdue is false
-    public void createMemberDues(){
+    public void createMemberDues() {
         duesList.clear();
-        for (Member member: memberList){
+        for (Member member : memberList) {
             duesList.add(new MemberShipFee(member, true, 0));
         }
     }
 
-    //Returns the list of dues
+    // Getters
+    // Returns the list of dues
     public List<MemberShipFee> getDuesList() {
         return duesList;
     }
 
-    //Cashier can extent dueDates or shorten them for testing
-    public void setFeeDueDate (MemberShipFee member, int Days){
-        member.setDueDate(Days);
-    }
-
-    //Cashier can change a members status to paid once paid.
-    public void setFeePaid (MemberShipFee member, boolean trueFalse){
-        member.setPaid(trueFalse);
-    }
-
-    //Function to show total amount of expected dues
-    public int totalPaid(){
-        int total = 0;
-        for (MemberShipFee fee: getPaid()){
-            total += fee.getRate();
-        }
-        return total;
-    }
-
-    //Function to show total amount unpaid dues
-    public int totalOwed(){
-        int total = 0;
-        for (MemberShipFee fee: getRestance()){
-            total += fee.getRate();
-        }
-        return total;
-    }
-    
-    //Function to show totalOwed + totalPaid
-    public int totalExpected(){
-        return totalPaid() + totalOwed();
-    }
-
     // This functions creates a new list based on the duesList condition isOveDue, then returns only those
     // where it is true giving a list of those who are late.
-    public List<MemberShipFee> getRestance() {
+    public List<MemberShipFee> getOverduePayments() {
         return duesList.stream().filter(MemberShipFee::isOverDue).toList();
     }
 
@@ -151,5 +121,37 @@ public class Delfin {
         return duesList.stream().filter(MemberShipFee::isPaid).toList();
     }
 
+    // Setters
+    // Cashier can extent dueDates or shorten them for testing
+    public void setFeeDueDate(MemberShipFee member, int Days) {
+        member.setDueDate(Days);
+    }
 
+    //Cashier can change a members status to paid once paid.
+    public void setFeePaid(MemberShipFee member, boolean trueFalse) {
+        member.setPaid(trueFalse);
+    }
+
+    //Function to show total amount of expected dues
+    public int totalPaid() {
+        int total = 0;
+        for (MemberShipFee fee : getPaid()) {
+            total += fee.getRate();
+        }
+        return total;
+    }
+
+    //Function to show total amount unpaid dues
+    public int totalOwed() {
+        int total = 0;
+        for (MemberShipFee fee : getOverduePayments()) {
+            total += fee.getRate();
+        }
+        return total;
+    }
+
+    //Function to show totalOwed + totalPaid
+    public int totalExpected() {
+        return totalPaid() + totalOwed();
+    }
 }

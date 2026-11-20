@@ -5,13 +5,13 @@ public class Member {
     String name;
     final int ID;
     final LocalDate birthDate;
-    ActivityType activityType;
+    Membership membership;
 
-    public Member(String name, int ID, LocalDate birthDate, ActivityType activityType) {
+    public Member(String name, int ID, LocalDate birthDate, Membership membership) {
         this.name = name;
         this.ID = ID;
         this.birthDate = birthDate;
-        this.activityType = activityType;
+        this.membership = membership;
     }
 
     public String getName() {
@@ -32,12 +32,12 @@ public class Member {
         return ID;
     }
 
-    public ActivityType getActivityType() {
-        return activityType;
+    public Membership getActivityType() {
+        return membership;
     }
 
-    public void setActivityType(ActivityType activityType) {
-        this.activityType = activityType;
+    public void setActivityType(Membership membership) {
+        this.membership = membership;
     }
 
     @Override
