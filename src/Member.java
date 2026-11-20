@@ -18,6 +18,10 @@ public class Member {
         return name;
     }
 
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
     public int getAge() {
         LocalDate today = LocalDate.now();
         int age = (int) ChronoUnit.YEARS.between(birthDate, today);
@@ -34,5 +38,13 @@ public class Member {
 
     public void setActivityType(ActivityType activityType) {
         this.activityType = activityType;
+    }
+
+    @Override
+    public String toString() {
+        return "\t Name: " + getName()
+                + "\t ID: " + getID()
+                + "\t Age: " + getAge()
+                + "\t Activity: " + getActivityType() + "\n";
     }
 }
