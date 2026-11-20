@@ -6,6 +6,7 @@ public class Delfin {
     List<Member> memberList = new ArrayList<Member>();
     List<Staff> staffList = new ArrayList<Staff>();
     List<MemberShipFee> duesList = new ArrayList<MemberShipFee>();
+    List<Team> teamList = new ArrayList<Team>();
 
     // --- Adders ---
     void addMember(Member member) {
@@ -16,6 +17,14 @@ public class Delfin {
         staffList.add(staff);
     }
 
+    void addTeam(Team team) {
+        teamList.add(team);
+    }
+
+    void addTeamMember(Team team, Member member) {
+        team.addMember(member);
+    }
+
     // --- Removers ---
     void removeMember(Member member) {
         memberList.remove(member);
@@ -23,6 +32,10 @@ public class Delfin {
 
     void removeStaff(Staff staff) {
         staffList.remove(staff);
+    }
+
+    void removeTeam(Team team) {
+        teamList.remove(team);
     }
 
     // --- Getters ---
@@ -57,6 +70,16 @@ public class Delfin {
     public ActivityType getActivity(Member member) {
         return member.getActivityType();
     }
+
+    public Team getTeam(int id) {
+        for (Team team : teamList) {
+            if (team.getId() == id) {
+                return team;
+            }
+        }
+        return null;
+    }
+
 
     // --- Setters ---
     public boolean setActivityType(int id, ActivityType activityType) {
