@@ -1,7 +1,5 @@
-import domain.Member;
-import domain.Membership;
-import domain.Result;
-import domain.SwimDisciplines;
+package domain;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -45,6 +43,11 @@ class ResultTest {
 
     @Test
     void getEvent() {
+        //Arrange
+        Result result = new Result("Club Championship", swimmer, 55.30, SwimDisciplines.Crawl, true, testDate);
+
+        //Arrange
+        assertEquals("Club Championship", result.getEvent());
 
     }
 

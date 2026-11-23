@@ -1,5 +1,5 @@
-import domain.Member;
-import domain.Membership;
+package domain;
+
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
