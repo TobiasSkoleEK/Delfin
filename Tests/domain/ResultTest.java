@@ -71,5 +71,11 @@ class ResultTest {
 
     @Test
     void testToString() {
+        //Arrange
+        Result result = new Result("Club Championship", swimmer, 55.30, SwimDisciplines.Crawl, true, testDate);
+        String expectedString = "\t Event: Club Championship\t Name: Anders Andersen\t Time in Seconds: 55.3\t Discipline: Crawl";
+
+        //Assert
+        assertEquals(expectedString, result.toString());
     }
 }
