@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class ResultTest {
 
@@ -32,10 +33,19 @@ class ResultTest {
 
     @Test
     void getSwimmer() {
+        //Arrange
+        Result result = new Result("Club Championship", swimmer, 55.30, SwimDisciplines.Crawl, true, testDate);
+
+        //Assert
+        assertNotNull(result.getSwimmer());
+        assertEquals("Anders Andersen", result.getSwimmer().getName());
+        assertEquals(1, result.getSwimmer().getID());
+
     }
 
     @Test
     void getEvent() {
+
     }
 
     @Test
