@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ResultTest {
 
@@ -63,8 +62,11 @@ class ResultTest {
     void isTournament() {
         //Arrange
         Result result = new Result("Club Championship", swimmer, 55.30, SwimDisciplines.Crawl, true, testDate);
+        Result result1 = new Result("Training", swimmer, 55.30, SwimDisciplines.Crawl, false, testDate);
 
         //Assert
+        assertTrue(result.isTournament());
+        assertFalse(result1.isTournament());
     }
 
     @Test
