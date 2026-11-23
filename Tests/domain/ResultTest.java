@@ -48,15 +48,23 @@ class ResultTest {
 
         //Arrange
         assertEquals("Club Championship", result.getEvent());
-
     }
 
     @Test
     void getDiscipline() {
+        //Arrange
+        Result result = new Result("Club Championship", swimmer, 55.30, SwimDisciplines.Crawl, true, testDate);
+
+        //Assert
+        assertEquals(SwimDisciplines.Crawl, result.getDiscipline());
     }
 
     @Test
     void isTournament() {
+        //Arrange
+        Result result = new Result("Club Championship", swimmer, 55.30, SwimDisciplines.Crawl, true, testDate);
+
+        //Assert
     }
 
     @Test
