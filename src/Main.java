@@ -1,3 +1,7 @@
+import controller.Controller;
+import domain.*;
+import ui.ConsoleUI;
+
 void main() {
 
     Staff admin = new Staff("Paul", 1, "password", PrivilegeLevel.Administrator);
@@ -10,8 +14,8 @@ void main() {
     // Quick Test Data
 
     Member member1 = new Member("Anders Andersen", 1,LocalDate.now().minusYears(16), Membership.Exercise);
-    Member member2 = new Member("Ole Andersen", 2,LocalDate.now().minusYears(19), Membership.Exercise);
-    Member member3 = new Member("Biver Andersen", 3,LocalDate.now().minusYears(70), Membership.Exercise);
+    Member member2 = new domain.Member("Ole Andersen", 2,LocalDate.now().minusYears(19), Membership.Exercise);
+    Member member3 = new domain.Member("Biver Andersen", 3,LocalDate.now().minusYears(70), Membership.Exercise);
 
     delfin.addMember(member1);
     delfin.addMember(member2);

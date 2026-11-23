@@ -1,3 +1,5 @@
+package domain;
+
 import java.time.LocalDate;
 
 public class MemberShipFee {
@@ -14,7 +16,7 @@ public class MemberShipFee {
     private LocalDate dueDate;
 
     // David: I made an alternative constructor that only requires 1 argument, and no knowledge of the members values
-//    public MemberShipFee(String name, int alder, ActivityType activityType) {
+//    public domain.MemberShipFee(String name, int alder, ActivityType activityType) {
 //        this.age = alder;
 //        this.activityType = activityType;
 //        this.name = name;

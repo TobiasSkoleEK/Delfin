@@ -1,3 +1,5 @@
+package domain;
+
 public class Staff {
     private final String name;
     private final int id;
@@ -36,6 +38,6 @@ public class Staff {
                 privilege = "Cashier";
             }
         }
-        return "Name: " + name + "ID: " + id + "PrivilegeLevel: " + privilege;
+        return "Name: " + name + "ID: " + id + "domain.PrivilegeLevel: " + privilege;
     }
 }

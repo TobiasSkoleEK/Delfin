@@ -1,3 +1,6 @@
+import domain.Member;
+import domain.MemberShipFee;
+import domain.Membership;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

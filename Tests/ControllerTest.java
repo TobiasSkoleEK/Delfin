@@ -1,3 +1,5 @@
+import controller.Controller;
+import domain.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -28,8 +30,8 @@ class ControllerTest {
         controller.addMember(youthMember);
 
         //Assert
-        assertEquals(1, controller.memberList.size());
-        assertTrue(controller.memberList.contains(youthMember));
+        assertEquals(1, controller.getMembers().size());
+        assertTrue(controller.getMembers().contains(youthMember));
     }
 
     @Test
@@ -38,8 +40,8 @@ class ControllerTest {
         controller.addStaff(staff);
 
         //Assert
-        assertEquals(1, controller.staffList.size());
-        assertTrue(controller.staffList.contains(staff));
+        assertEquals(1, controller.getStaffList().size());
+        assertTrue(controller.getStaffList().contains(staff));
     }
 
     @Test
@@ -51,8 +53,8 @@ class ControllerTest {
         controller.removeMember(seniorMember);
 
         //Assert
-        assertEquals(0, controller.memberList.size());
-        assertFalse(controller.memberList.contains(seniorMember));
+        assertEquals(0, controller.getMembers().size());
+        assertFalse(controller.getMembers().contains(seniorMember));
     }
 
     @Test
@@ -64,8 +66,8 @@ class ControllerTest {
         controller.removeStaff(staff);
 
         //Assert
-        assertEquals(0, controller.staffList.size());
-        assertFalse(controller.staffList.contains(staff));
+        assertEquals(0, controller.getStaffList().size());
+        assertFalse(controller.getStaffList().contains(staff));
     }
 
     @Test

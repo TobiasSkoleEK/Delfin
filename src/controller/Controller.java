@@ -1,3 +1,10 @@
+package controller;
+import domain.Member;
+import domain.Staff;
+import domain.MemberShipFee;
+import domain.Team;
+import domain.Membership;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,32 +17,32 @@ public class Controller {
 
     // --- Members ---
     // Adders
-    void addMember(Member member) {
+    public void addMember(Member member) {
         memberList.add(member);
     }
 
-    void addStaff(Staff staff) {
+    public void addStaff(Staff staff) {
         staffList.add(staff);
     }
 
-    void addTeam(Team team) {
+    public void addTeam(Team team) {
         teamList.add(team);
     }
 
-    void addTeamMember(Team team, Member member) {
+    public void addTeamMember(Team team, Member member) {
         team.addMember(member);
     }
 
     // Removers
-    void removeMember(Member member) {
+    public void removeMember(Member member) {
         memberList.remove(member);
     }
 
-    void removeStaff(Staff staff) {
+    public void removeStaff(Staff staff) {
         staffList.remove(staff);
     }
 
-    void removeTeam(Team team) {
+    public void removeTeam(Team team) {
         teamList.remove(team);
     }
 
@@ -51,6 +58,10 @@ public class Controller {
 
     public List<Member> getMembers() {
         return memberList;
+    }
+
+    public List<Staff> getStaffList() {
+        return staffList;
     }
 
     public String getName(Member member) {
