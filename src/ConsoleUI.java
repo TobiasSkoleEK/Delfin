@@ -81,7 +81,7 @@ public class ConsoleUI {
 
         IO.println("//Member List//");
         for (Member member : members) {
-            IO.println(member.getID() + ", " + member.getName() + ", " + member.getActivityType() + ", " + member.getBirthDate() + "(" + member.getAge() + ")");
+            IO.println(member.getID() + ", " + member.getName() + ", " + member.getMembership() + ", " + member.getBirthDate() + "(" + member.getAge() + ")");
         }
     }
 
@@ -89,7 +89,7 @@ public class ConsoleUI {
         String name;
         int id;
         LocalDate birth;
-        Membership activity = Membership.Passive;
+        Membership membership = Membership.Passive;
 
         // Name
         name = IO.readln("Name: ");
@@ -110,23 +110,23 @@ public class ConsoleUI {
             return;
         }
 
-        // Activity
+        // Membership
         try {
-            String input = IO.readln("Activity (Passive - Exercise - Tournament): ");
+            String input = IO.readln("Membership (Passive - Exercise - Tournament): ");
             if (!input.isEmpty()) {
-                activity = Membership.valueOf(input);
+                membership = Membership.valueOf(input);
             }
         } catch (IllegalArgumentException e) {
-            IO.println("Invalid activity type.");
+            IO.println("Invalid membership type.");
             return;
         }
 
-        Member member = new Member(name, id, birth, activity);
+        Member member = new Member(name, id, birth, membership);
         delfin.addMember(member);
     }
 
     private void editMember() {
-        IO.println("///Edit Member Activity///");
+        IO.println("///Edit Member Membership///");
 
         int id;
         try {
@@ -143,18 +143,18 @@ public class ConsoleUI {
         }
 
         IO.println("Member: " + member.getName());
-        IO.println("Current activity: " + member.getActivityType());
+        IO.println("Current membership: " + member.getMembership());
 
-        Membership activity;
+        Membership membership;
         try {
-            activity = Membership.valueOf(IO.readln("New activity (Passive - Exercise - Tournament): "));
+            membership = Membership.valueOf(IO.readln("New membership (Passive - Exercise - Tournament): "));
         } catch (IllegalArgumentException e) {
-            IO.println("Invalid activity type.");
+            IO.println("Invalid membership type.");
             return;
         }
 
-        delfin.setActivityType(id, activity);
-        IO.println("Activity updated to " + activity);
+        delfin.setMembership(id, membership);
+        IO.println("Membership updated to " + membership);
     }
 
     private void removeMember() {

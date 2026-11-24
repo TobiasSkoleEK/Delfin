@@ -120,23 +120,23 @@ class ControllerTest {
     }
 
     @Test
-    void getActivity() {
+    void getMembership() {
         //Assert
-        assertEquals(Membership.Exercise, controller.getActivity(youthMember));
+        assertEquals(Membership.Exercise, controller.getMembership(youthMember));
     }
 
     @Test
-    void setActivityType() {
+    void setMembership() {
         //Arrange
         controller.addMember(youthMember);
         int id = youthMember.getID();
 
         //act
-        controller.setActivityType(id, Membership.Passive);
+        controller.setMembership(id, Membership.Passive);
 
         //Assert
-        assertEquals(Membership.Passive, youthMember.getActivityType());
-        assertNotNull(youthMember.getActivityType());
+        assertEquals(Membership.Passive, youthMember.getMembership());
+        assertNotNull(youthMember.getMembership());
     }
 
     @Test

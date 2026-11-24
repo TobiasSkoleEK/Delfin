@@ -19,15 +19,15 @@ public class TestMemberClass {
         assertEquals(member1.getName(),"Anders Andersen");
         assertEquals(member1.getID(), 1);
         assertEquals(member1.getAge(), 16); // This also tests the method Age calculation.
-        assertEquals(member1.getActivityType(), Membership.Exercise);
+        assertEquals(member1.getMembership(), Membership.Exercise);
 
     }
 
     @Test
     void testMemberSetActivity(){
         //
-        member1.setActivityType(Membership.Passive);
+        member1.setMembership(Membership.Passive);
         //
-        assertEquals(member1.getActivityType(), Membership.Passive);
+        assertEquals(member1.getMembership(), Membership.Passive);
     }
 }
