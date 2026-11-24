@@ -4,13 +4,13 @@ import java.util.List;
 public class Team {
     int id;
     List<Member> memberList;
-    List<Staff> staffList;
-    List<Result> resultList;
+    List<Staff> staffList; // Has a staffList because you can have 1 or more coaches on a team
+//    List<Result> resultList; // removable
     public Team(int id) {
         this.id = id;
         this.memberList = new ArrayList<>();
         this.staffList = new ArrayList<>();
-        this.resultList = new ArrayList<>();
+//        this.resultList = new ArrayList<>();
     }
 
     //Adders
@@ -22,9 +22,13 @@ public class Team {
         staffList.add(staff);
     }
 
-    public void addResult(Result result) {
-        resultList.add(result);
+    public void removeMember(Member member) {
+        memberList.remove(member);
     }
+
+//    public void addResult(Result result) {
+//        resultList.add(result);
+    //}
 
     //Getters
     public int getId() {
@@ -57,8 +61,8 @@ public class Team {
         return staffList;
     }
 
-    public List<Result> getResultList() {
-        return resultList;
-    }
+//    public List<Result> getResultList() {
+//        return resultList;
+//    }
 
 }

@@ -22,10 +22,6 @@ public class Controller {
         teamList.add(team);
     }
 
-    void addTeamMember(Team team, Member member) {
-        team.addMember(member);
-    }
-
     // Removers
     void removeMember(Member member) {
         memberList.remove(member);
@@ -153,5 +149,39 @@ public class Controller {
     //Function to show totalOwed + totalPaid
     public int totalExpected() {
         return totalPaid() + totalOwed();
+    }
+
+    // coach commands
+
+    Team unassigned = new Team(1);
+    Team JuniorCrawl = new Team(2);
+    Team JuniorBackcrawl = new Team(3);
+    Team JuniorButterfly = new Team(4);
+    Team JuniorBreaststroke = new Team(5);
+    Team SeniorCrawl = new Team(6);
+    Team unassignedBackcrawl = new Team(7);
+    Team unassignedButterfly = new Team(8);
+    Team SeniorBreaststroke = new Team(9);
+
+    public void addTeamMember(Team team, Member member) {
+        team.addMember(member);
+    }
+
+    public void moveTeamMember(Team originTeam, Team destinationTeam, int memberID) {
+        Member memberToMove = originTeam.getMember(memberID);
+        destinationTeam.addMember(memberToMove);
+        originTeam.removeMember(memberToMove);
+    }
+
+    public int findMemberId(String name) {
+
+        for (Member member : memberList) {
+            if (member.getName() == name) {
+                return member.getID();
+            }
+        }
+        throw new IllegalArgumentException(
+                "Member not found: " + name
+        );
     }
 }

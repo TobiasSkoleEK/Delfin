@@ -24,7 +24,7 @@ public class MemberShipFee {
     public MemberShipFee(Member member, boolean paid, int dueDateDays) {
         this.age = member.getAge();
         this.membership = member.getActivityType();
-        this.name = member.getName();
+        this.name = member.getName(); //Member member
         this.rate = calculateRate();
         this.paid = paid;
         // When making an object you can set the due date based on current date +- days, can also test lateness.

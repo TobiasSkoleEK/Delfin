@@ -1,3 +1,3 @@
 public enum SwimDisciplines {
-    Butterfly, Crawl, Backcrawl, Breaststroke
+    Butterfly, Crawl, Backcrawl, Breaststroke, Unassigned
 }
