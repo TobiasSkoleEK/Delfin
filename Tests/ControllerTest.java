@@ -75,12 +75,12 @@ class ControllerTest {
         int id = youthMember.getID();
 
         //Act
-        controller.getMember(id);
+        controller.findMember(id);
 
         //Assert
         assertNotNull(id);
         assertEquals(youthMember.getID(), id);
-        assertNull(controller.getMember(666));
+        assertNull(controller.findMember(666));
 
     }
 

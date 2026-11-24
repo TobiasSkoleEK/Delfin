@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Controller {
@@ -8,7 +9,7 @@ public class Controller {
     List<MemberShipFee> duesList = new ArrayList<MemberShipFee>();
     List<Team> teamList = new ArrayList<Team>();
 
-    // --- Members ---
+    // --- Admin ---
     // Adders
     void addMember(Member member) {
         memberList.add(member);
@@ -18,8 +19,10 @@ public class Controller {
         staffList.add(staff);
     }
 
-    void addTeam(Team team) {
-        teamList.add(team);
+    void addTeams(int... teamIds) {
+        for (int id : teamIds) {
+            teamList.add(findTeam(id));
+        }
     }
 
     // Removers
@@ -31,20 +34,7 @@ public class Controller {
         staffList.remove(staff);
     }
 
-    void removeTeam(Team team) {
-        teamList.remove(team);
-    }
-
     // Getters
-    public Member getMember(int ID) {
-        for (Member member : memberList) {
-            if (member.getID() == ID) {
-                return member;
-            }
-        }
-        return null;
-    }
-
     public List<Member> getMembers() {
         return memberList;
     }
@@ -69,18 +59,9 @@ public class Controller {
         return member.getMembership();
     }
 
-    public Team getTeam(int id) {
-        for (Team team : teamList) {
-            if (team.getId() == id) {
-                return team;
-            }
-        }
-        return null;
-    }
-
     // Setters
     public boolean setMembership(int id, Membership membership) {
-        Member member = getMember(id);
+        Member member = findMember(id);
         if (member == null) {
             return false;
         }
@@ -88,10 +69,20 @@ public class Controller {
         return true;
     }
 
+    // Finders
+    public Member findMember(int ID) {
+        for (Member member : memberList) {
+            if (member.getID() == ID) {
+                return member;
+            }
+        }
+        return null;
+    }
+
     // --- Cashier Commands ---
 
     // Adders
-    // Clears due list and recreates it based on member list, currently everything is paid and overdue is false
+    //Clears dueList and recreates it based on member list, currently everything is paid and overdue is false
     public void createMemberDues() {
         duesList.clear();
         for (Member member : memberList) {
@@ -100,25 +91,25 @@ public class Controller {
     }
 
     // Getters
-    // Returns the list of dues
+    //Returns the list of dues
     public List<MemberShipFee> getDuesList() {
         return duesList;
     }
 
-    // This functions creates a new list based on the duesList condition isOveDue, then returns only those
-    // where it is true giving a list of those who are late.
+    //This functions creates a new list based on the duesList condition isOveDue, then returns only those
+    //where it is true giving a list of those who are late.
     public List<MemberShipFee> getOverduePayments() {
         return duesList.stream().filter(MemberShipFee::isOverDue).toList();
     }
 
-    // This functions creates a new list based on the duesList condition isPaid, then returns only those
-    // where it is true giving a list of those who have not paid.
+    //This functions creates a new list based on the duesList condition isPaid, then returns only those
+    //where it is true giving a list of those who have not paid.
     public List<MemberShipFee> getPaid() {
         return duesList.stream().filter(MemberShipFee::isPaid).toList();
     }
 
     // Setters
-    // Cashier can extent dueDates or shorten them for testing
+    //Cashier can extend dueDates or shorten them for testing
     public void setFeeDueDate(MemberShipFee member, int Days) {
         member.setDueDate(Days);
     }
@@ -128,6 +119,7 @@ public class Controller {
         member.setPaid(trueFalse);
     }
 
+    // Functions
     //Function to show total amount of expected dues
     public int totalPaid() {
         int total = 0;
@@ -151,37 +143,51 @@ public class Controller {
         return totalPaid() + totalOwed();
     }
 
-    // coach commands
+    // --- Trainer ---
+    Team unassigned = new Team(0);
+    Team JuniorCrawl = new Team(1);
+    Team JuniorBackcrawl = new Team(2);
+    Team JuniorButterfly = new Team(3);
+    Team JuniorBreaststroke = new Team(4);
+    Team SeniorCrawl = new Team(5);
+    Team SeniorBackcrawl = new Team(6);
+    Team SeniorButterfly = new Team(7);
+    Team SeniorBreaststroke = new Team(8);
 
-    Team unassigned = new Team(1);
-    Team JuniorCrawl = new Team(2);
-    Team JuniorBackcrawl = new Team(3);
-    Team JuniorButterfly = new Team(4);
-    Team JuniorBreaststroke = new Team(5);
-    Team SeniorCrawl = new Team(6);
-    Team unassignedBackcrawl = new Team(7);
-    Team unassignedButterfly = new Team(8);
-    Team SeniorBreaststroke = new Team(9);
-
+    // Adders
     public void addTeamMember(Team team, Member member) {
         team.addMember(member);
     }
 
-    public void moveTeamMember(Team originTeam, Team destinationTeam, int memberID) {
-        Member memberToMove = originTeam.getMember(memberID);
-        destinationTeam.addMember(memberToMove);
-        originTeam.removeMember(memberToMove);
+    // Getters
+    public List<Team> getTeamList() {
+        return teamList;
+    }
+
+    // Finders
+    public Team findTeam(int id) {
+        for (Team team : teamList) {
+            if (team.getId() == id) {
+                return team;
+            }
+        }
+        return null;
     }
 
     public int findMemberId(String name) {
-
         for (Member member : memberList) {
-            if (member.getName() == name) {
+            if (member.getName().equals(name)) {
                 return member.getID();
             }
         }
-        throw new IllegalArgumentException(
-                "Member not found: " + name
-        );
+        throw new IllegalArgumentException("Member not found: " + name);
+    }
+
+    // Functions
+    public void moveTeamMember(int memberID, Team destinationTeam) {
+        Member memberToMove = findMember(memberID);
+        Team originTeam = findTeam(memberToMove.getID());
+        destinationTeam.addMember(memberToMove);
+        originTeam.removeMember(memberToMove);
     }
 }

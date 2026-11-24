@@ -136,7 +136,7 @@ public class ConsoleUI {
             return;
         }
 
-        Member member = delfin.getMember(id);
+        Member member = delfin.findMember(id);
         if (member == null) {
             IO.println("No member with ID " + id);
             return;
@@ -169,7 +169,7 @@ public class ConsoleUI {
             return;
         }
 
-        Member member = delfin.getMember(id);
+        Member member = delfin.findMember(id);
         delfin.removeMember(member);
     }
 
