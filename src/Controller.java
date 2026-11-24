@@ -65,8 +65,8 @@ public class Controller {
         return member.getAge();
     }
 
-    public Membership getActivity(Member member) {
-        return member.getActivityType();
+    public Membership getMembership(Member member) {
+        return member.getMembership();
     }
 
     public Team getTeam(int id) {
@@ -79,12 +79,12 @@ public class Controller {
     }
 
     // Setters
-    public boolean setActivityType(int id, Membership membership) {
+    public boolean setMembership(int id, Membership membership) {
         Member member = getMember(id);
         if (member == null) {
             return false;
         }
-        member.setActivityType(membership);
+        member.setMembership(membership);
         return true;
     }
 
