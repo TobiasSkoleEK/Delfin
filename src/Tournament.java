@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tournament {
-    private List<Result> resultList = new ArrayList<>();
+    private List<Result> tournamentResults = new ArrayList<>();
     private String name;
     private LocalDate date;
 
@@ -18,7 +18,16 @@ public class Tournament {
     }
 
     public List<Result> getResultList() {
-        return resultList;
+        return tournamentResults;
+    }
+
+    public Result getResult(Member member){
+        for (Result result : tournamentResults){
+            if (result.getMember() == member){
+                return result;
+            }
+        }
+        return null;
     }
 
     public LocalDate getDate() {
@@ -26,6 +35,6 @@ public class Tournament {
     }
 
     void addResult(Result result){
-        resultList.add(result);
+        tournamentResults.add(result);
     }
 }
