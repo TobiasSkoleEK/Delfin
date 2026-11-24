@@ -35,13 +35,7 @@ public class MemberShipFee {
 
     public int calculateRate() {
         switch (membership) {
-            case Passive -> {if ( age < 60) {
-                return passiveRate; }
-                else {
-                    int discountPas = passiveRate * seniorDiscount / 100;
-                    return passiveRate - discountPas;
-                }
-            }
+            case Passive -> return passiveRate;
             case Exercise -> {
                 if (age < 18) { return youthRate;}
                 else if (age < 60) { return seniorRate;}
