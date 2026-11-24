@@ -8,11 +8,13 @@ import java.util.List;
 
 public class FileReader {
     private Path path;
-    private CsvMapper mapper;
+    private CSVMapper mapper;
+    private List<Member> memberList;
 
-    public FileHandler(Path path, CsvMapper mapper) {
+    public FileReader(Path path, CSVMapper mapper, List<Member> memberList) {
         this.path = path;
         this.mapper = mapper;
+        this.memberList = memberList;
     }
 
     // Member save and load
@@ -55,7 +57,7 @@ public class FileReader {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
 
-                results.add(mapper.csvToResult(line));
+                results.add(mapper.csvToResult(line, memberList));
             }
             return results;
         }
