@@ -26,20 +26,6 @@ public class Tournament {
         return date;
     }
 
-    void addParticipant(Competitor member){
-        if (!participantList.contains(member)){
-            participantList.add(member);
-        }
-    }
-
-    void removeParticipant(Competitor member){
-        participantList.remove(member);
-    }
-
-    public List<Competitor> getParticipants(){
-        return participantList;
-    }
-
     void addResult(Result result){
         resultList.add(result);
     }
