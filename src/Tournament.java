@@ -6,7 +6,6 @@ public class Tournament {
     private List<Result> resultList = new ArrayList<>();
     private String name;
     private LocalDate date;
-    private List<Competitor> participantList = new ArrayList<>();
 
     public Tournament(String name, LocalDate date){
         this.name = name;
