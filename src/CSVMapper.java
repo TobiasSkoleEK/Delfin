@@ -27,7 +27,7 @@ public class CSVMapper {
         return member.getName()
                 + delimiter + member.getID()
                 + delimiter + member.getAge()
-                + delimiter + member.getActivityType();
+                + delimiter + member.getMembership();
     }
 
     // Results
