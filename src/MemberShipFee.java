@@ -23,7 +23,7 @@ public class MemberShipFee {
 
     public MemberShipFee(Member member, boolean paid, int dueDateDays) {
         this.age = member.getAge();
-        this.membership = member.getActivityType();
+        this.membership = member.getMembership();
         this.name = member.getName();
         this.rate = calculateRate();
         this.paid = paid;

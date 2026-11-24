@@ -32,11 +32,11 @@ public class Member {
         return ID;
     }
 
-    public Membership getActivityType() {
+    public Membership getMembership() {
         return membership;
     }
 
-    public void setActivityType(Membership membership) {
+    public void setMembership(Membership membership) {
         this.membership = membership;
     }
 
@@ -45,6 +45,6 @@ public class Member {
         return "\t Name: " + getName()
                 + "\t ID: " + getID()
                 + "\t Age: " + getAge()
-                + "\t Activity: " + getActivityType() + "\n";
+                + "\t Activity: " + getMembership() + "\n";
     }
 }
