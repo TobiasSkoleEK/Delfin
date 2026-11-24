@@ -33,7 +33,7 @@ public class Result {
         return swimTimeInSeconds;
     }
 
-    public Member getSwimmer() {
+    public Member getMember() {
         return swimmer;
     }
 
@@ -47,6 +47,10 @@ public class Result {
 
     public boolean isTournament() {
         return isTournament;
+    }
+
+    public LocalDate getDate() {
+        return date;
     }
 
     // To String - boolean not included in toString, if training event event name should be "Training"
