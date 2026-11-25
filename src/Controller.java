@@ -171,7 +171,7 @@ public class Controller {
                 return team;
             }
         }
-        throw new IllegalArgumentException("Member ID not found: " + id);
+        throw new IllegalArgumentException("Team not found: " + id);
     }
 
     public int findMemberId(String name) {
