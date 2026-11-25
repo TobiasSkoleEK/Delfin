@@ -81,7 +81,7 @@ public class ConsoleUI {
 
         IO.println("//Member List//");
         for (Member member : members) {
-            IO.println(member.getID() + ", " + member.getName() + ", " + member.getMembership() + ", " + member.getBirthDate() + "(" + member.getAge() + ")");
+            IO.println(member);
         }
     }
 
