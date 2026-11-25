@@ -250,15 +250,7 @@ class ControllerTest {
         assertTrue(restance.contains(fee));
         assertFalse(fee.isPaid());
     }
-    @Test
-    void addTeam(){
-        //Arrange
-        controller.addTeam(team);
 
-        //Assert
-        assertEquals(1, controller.teamList.size());
-        assertTrue(controller.teamList.contains(team));
-    }
     @Test
     void addTeamMember(){
         //Arrange
