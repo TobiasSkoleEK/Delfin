@@ -272,6 +272,9 @@ public class ConsoleUI {
 
     private void moveMember(){
 
+        int memberID = Integer.parseInt(IO.readln("Input Member ID : "));
+        int teamID = Integer.parseInt(IO.readln("Input ID of team member will be moved to : "));
+        delfin.moveTeamMember(memberID, delfin.findTeam(teamID));
     }
 
     private String input() {
