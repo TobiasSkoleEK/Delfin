@@ -85,6 +85,6 @@ public class MemberShipFee {
 
     @Override
     public String toString() {
-        return "Name: " + name + "\t Rate: " + rate + "\t Due Date: " + dueDate + "\t Is paid: " + paid + "\t Is overdue: " + isOverDue + "\n";
+        return "Name: " + name + "\t Rate: " + rate + "\t Due Date: " + dueDate + "\t Is paid: " + paid + "\t Is overdue: " + isOverDue;
     }
 }
