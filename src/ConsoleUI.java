@@ -226,8 +226,8 @@ public class ConsoleUI {
         IO.println("1. Competitive Teams");
         IO.println("2. View Training Results");
         IO.println("3. Events ");
-
-        switch (input()) {
+        String input = IO.readln("Input: ");
+        switch (input) {
             case "1" -> competetiveTeamsMenu();
             case "2" -> displayTrainingResults();
             case "3" -> displayEvents();
@@ -239,6 +239,10 @@ public class ConsoleUI {
         IO.println("/// Competetive Teams///");
         IO.println("1. Move Member to a Team");
         IO.println("0. Go back");
+
+        String input = IO.readln("Input: ");
+
+        switch (input)
 
         if (input().equals("1")) {
             try {
