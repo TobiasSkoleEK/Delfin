@@ -247,6 +247,7 @@ public class ConsoleUI {
             case "1" -> moveMember();
             case "2" -> viewMembers();
             case "3" -> viewTeams();
+            case "4" -> viewMembersOfTeam();
             case "b" -> displayCompetition();
             default -> {
                 IO.println("Invalid command");
@@ -281,6 +282,11 @@ public class ConsoleUI {
         int memberID = Integer.parseInt(IO.readln("Input Member ID : "));
         int teamID = Integer.parseInt(IO.readln("Input ID of team member will be moved to : "));
         delfin.moveTeamMember(memberID, delfin.findTeam(teamID));
+    }
+
+    private void viewTeams(){
+        for (Team team : delfin.getTeamList())
+            IO.println(team);
     }
 
     private String input() {
