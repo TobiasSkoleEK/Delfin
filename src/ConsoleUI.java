@@ -229,8 +229,8 @@ public class ConsoleUI {
         String input = IO.readln("Input: ");
         switch (input) {
             case "1" -> competetiveTeamsMenu();
-            case "2" -> displayTrainingResults();
-            case "3" -> displayEvents();
+         //   case "2" -> displayTrainingResults();
+         //   case "3" -> displayEvents();
             default -> IO.println("Invalid Command");
             }
         }
