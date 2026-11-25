@@ -227,6 +227,35 @@ public class ConsoleUI {
         IO.println("2. View Training Results");
         IO.println("3. Events ");
 
+        switch (input()) {
+            case "1" -> competetiveTeamsMenu();
+            }
+        }
+
+    private void competetiveTeamsMenu() {
+        IO.println("/// Competetive Teams///");
+        IO.println("1. Move Member to a Team");
+        IO.println("0. Go back");
+
+        if (input().equals("1")) {
+            try {
+                IO.println("Enter member name: ");
+                String name = input();
+                int memberID = delfin.findMemberId(name);
+
+                IO.println("Select team that suits: ");
+                IO.println("0: Unassigned | 1: Junior Crawl | 2: Junior Backcrawl | 3: Junior Butterfly | 4: Junior BreastStroke\n 5: Senior Crawl | 6: Senior Backcrawl | 7: Senior Butterfly | Senior Breaststroke ");
+
+                int teamID = Integer.parseInt(input());
+                Team chosenTeam = delfin.findTeam(teamID);
+
+                delfin.moveTeamMember(memberID, chosenTeam);
+                IO.println("Member is moved succesfully");
+
+            }   catch (Exception e) {
+                IO.println("Error");
+            }
+        }
     }
 
     private String input() {
