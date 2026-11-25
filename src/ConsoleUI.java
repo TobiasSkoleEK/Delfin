@@ -87,20 +87,12 @@ public class ConsoleUI {
 
     private void addMember() {
         String name;
-        int id;
+        int id = delfin.getMembers().size()+1;
         LocalDate birth;
         Membership membership = Membership.Passive;
 
         // Name
         name = IO.readln("Name: ");
-
-        // ID
-        try {
-            id = Integer.parseInt(IO.readln("ID: "));
-        } catch (NumberFormatException e) {
-            IO.println("Invalid ID — must be a number.");
-            return;
-        }
 
         // Birthdate
         try {

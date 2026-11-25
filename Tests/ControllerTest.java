@@ -11,6 +11,7 @@ class ControllerTest {
     private Member youthMember;
     private Member seniorMember;
     private Staff staff;
+    private Team team;
 
     @BeforeEach
     void setUp(){
@@ -20,6 +21,7 @@ class ControllerTest {
         youthMember = new Member("Anders Andersen", 1,LocalDate.now().minusYears(16), Membership.Exercise);
         seniorMember = new Member("Biver Andersen", 3,LocalDate.now().minusYears(70), Membership.Exercise);
         staff = new Staff("Paul", 1, "password", PrivilegeLevel.Administrator);
+        team = new Team(1);
     }
 
     @Test
@@ -248,4 +250,34 @@ class ControllerTest {
         assertTrue(restance.contains(fee));
         assertFalse(fee.isPaid());
     }
+    @Test
+    void addTeam(){
+        //Arrange
+        controller.addTeam(team);
+
+        //Assert
+        assertEquals(1, controller.teamList.size());
+        assertTrue(controller.teamList.contains(team));
+    }
+    @Test
+    void addTeamMember(){
+        //Arrange
+        controller.addTeamMember(team, seniorMember);
+
+        //Assert
+        assertEquals(1, team.getMemberList().size());
+        assertTrue(team.memberList.contains(seniorMember));
+    }
+    @Test
+    void removeTeam(){
+        //Arrange
+        controller.addTeam(team);
+
+        //Act
+        controller.removeTeam(team);
+
+        //Assert
+        assertEquals(0, controller.teamList.size());
+    }
+
 }
