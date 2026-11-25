@@ -245,7 +245,13 @@ public class ConsoleUI {
         int memberID = 0;
         switch (input) {                        // Det her svarer til if(input().equals("1")) men det er meget nemmere ikke?
             case "1" -> moveMember();
-
+            case "2" -> viewMembers();
+            case "3" -> viewTeams();
+            case "b" -> displayCompetition();
+            default -> {
+                IO.println("Invalid command");
+                competetiveTeamsMenu();
+            }
 
 
         }
