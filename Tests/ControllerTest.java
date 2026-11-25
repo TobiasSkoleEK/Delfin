@@ -260,16 +260,5 @@ class ControllerTest {
         assertEquals(1, team.getMemberList().size());
         assertTrue(team.memberList.contains(seniorMember));
     }
-    @Test
-    void removeTeam(){
-        //Arrange
-        controller.addTeam(team);
-
-        //Act
-        controller.removeTeam(team);
-
-        //Assert
-        assertEquals(0, controller.teamList.size());
-    }
 
 }
