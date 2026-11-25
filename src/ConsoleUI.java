@@ -236,7 +236,7 @@ public class ConsoleUI {
         }
 
     private void competetiveTeamsMenu() {
-        IO.println("/// Competetive Teams///");
+        IO.println("/// Team Management ///");
         IO.println("1. Move Member to a Team");
         IO.println("0. Go back");
                                                 // Du behøver ikke at bruge IF sætninger her, da det er en menu, istedet for IF kan vi lave en nu menu.
@@ -285,9 +285,29 @@ public class ConsoleUI {
     }
 
     private void viewTeams(){
+
+        IO.println("/// Teams ///");
+
         for (Team team : delfin.getTeamList())
             IO.println(team);
+
+        String input = IO.readln(" View Team? y/n").trim().toLowerCase();
+        switch (input) {
+            default -> viewTeams();
+            case "y" -> {
+                int input2 = Integer.parseInt(IO.readln("Input Team ID: ").trim());
+                IO.println("Team " + input2);
+                for (Member member : delfin.findTeam(input2).memberList) {
+                    IO.println(member);
+                }
+                viewTeams();
+            }
+            case "n" -> competetiveTeamsMenu();
+
+        }
     }
+
+
 
     private String input() {
         return IO.readln("Input: ").toLowerCase().trim();
