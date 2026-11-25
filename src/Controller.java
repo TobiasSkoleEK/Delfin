@@ -76,7 +76,7 @@ public class Controller {
                 return member;
             }
         }
-        return null;
+        throw new IllegalArgumentException("Member ID not found: " + ID);
     }
 
     // --- Cashier Commands ---
