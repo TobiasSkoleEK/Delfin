@@ -239,16 +239,21 @@ public class ConsoleUI {
         IO.println("/// Competetive Teams///");
         IO.println("1. Move Member to a Team");
         IO.println("0. Go back");
+                                                // Du behøver ikke at bruge IF sætninger her, da det er en menu, istedet for IF kan vi lave en nu menu.
+        String input = IO.readln("Input: ");    // denne line læser et input og opretter en variable der hedder input
+                                                // Her læser switch metoden vores input,
+        int memberID = 0;
+        switch (input) {                        // Det her svarer til if(input().equals("1")) men det er meget nemmere ikke?
+            case "1" -> moveMember();
 
-        String input = IO.readln("Input: ");
 
-        switch (input)
+
+        }
 
         if (input().equals("1")) {
             try {
                 IO.println("Enter member name: ");
                 String name = input();
-                int memberID = delfin.findMemberId(name);
 
                 IO.println("Select team that suits: ");
                 IO.println("0: Unassigned | 1: Junior Crawl | 2: Junior Backcrawl | 3: Junior Butterfly | 4: Junior BreastStroke\n 5: Senior Crawl | 6: Senior Backcrawl | 7: Senior Butterfly | Senior Breaststroke ");
@@ -263,6 +268,10 @@ public class ConsoleUI {
                 IO.println("Error");
             }
         }
+    }
+
+    private void moveMember(){
+
     }
 
     private String input() {
