@@ -19,12 +19,6 @@ public class Controller {
         staffList.add(staff);
     }
 
-    void addTeams(int... teamIds) {
-        for (int id : teamIds) {
-            teamList.add(findTeam(id));
-        }
-    }
-
     // Removers
     void removeMember(Member member) {
         memberList.remove(member);
