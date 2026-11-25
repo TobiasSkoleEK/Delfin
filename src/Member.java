@@ -45,6 +45,6 @@ public class Member {
         return "\t Name: " + getName()
                 + "\t ID: " + getID()
                 + "\t Age: " + getAge()
-                + "\t Activity: " + getMembership() + "\n";
+                + "\t Activity: " + getMembership();
     }
 }
