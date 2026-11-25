@@ -42,9 +42,7 @@ public class Member {
 
     @Override
     public String toString() {
-        return "\t Name: " + getName()
-                + "\t ID: " + getID()
-                + "\t Age: " + getAge()
-                + "\t Activity: " + getMembership() + "\n";
+        return String.format("%-30s ID: %-10d Age: %-10d Activity: %-10s",
+                "Name: " + getName(), getID(), getAge(), getMembership());
     }
 }

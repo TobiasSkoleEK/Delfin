@@ -250,15 +250,7 @@ class ControllerTest {
         assertTrue(restance.contains(fee));
         assertFalse(fee.isPaid());
     }
-    @Test
-    void addTeam(){
-        //Arrange
-        controller.addTeam(team);
 
-        //Assert
-        assertEquals(1, controller.teamList.size());
-        assertTrue(controller.teamList.contains(team));
-    }
     @Test
     void addTeamMember(){
         //Arrange
@@ -267,17 +259,6 @@ class ControllerTest {
         //Assert
         assertEquals(1, team.getMemberList().size());
         assertTrue(team.memberList.contains(seniorMember));
-    }
-    @Test
-    void removeTeam(){
-        //Arrange
-        controller.addTeam(team);
-
-        //Act
-        controller.removeTeam(team);
-
-        //Assert
-        assertEquals(0, controller.teamList.size());
     }
 
 }

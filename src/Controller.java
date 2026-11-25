@@ -19,12 +19,6 @@ public class Controller {
         staffList.add(staff);
     }
 
-    void addTeams(int... teamIds) {
-        for (int id : teamIds) {
-            teamList.add(findTeam(id));
-        }
-    }
-
     // Removers
     void removeMember(Member member) {
         memberList.remove(member);
@@ -76,7 +70,7 @@ public class Controller {
                 return member;
             }
         }
-        return null;
+        throw new IllegalArgumentException("Member ID not found: " + ID);
     }
 
     // --- Cashier Commands ---
@@ -171,7 +165,7 @@ public class Controller {
                 return team;
             }
         }
-        return null;
+        throw new IllegalArgumentException("Team not found: " + id);
     }
 
     public int findMemberId(String name) {

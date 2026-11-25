@@ -13,14 +13,6 @@ public class MemberShipFee {
     private boolean isOverDue;
     private LocalDate dueDate;
 
-    // David: I made an alternative constructor that only requires 1 argument, and no knowledge of the members values
-//    public MemberShipFee(String name, int alder, ActivityType activityType) {
-//        this.age = alder;
-//        this.activityType = activityType;
-//        this.name = name;
-//        this.rate = calculateRate();
-//    }
-
     public MemberShipFee(Member member, boolean paid, int dueDateDays) {
         this.age = member.getAge();
         this.membership = member.getMembership();
@@ -93,6 +85,9 @@ public class MemberShipFee {
 
     @Override
     public String toString() {
-        return "Name: " + name + "\t Rate: " + rate + "\t Due Date: " + dueDate + "\t Is paid: " + paid + "\t Is overdue: " + isOverDue + "\n";
+        return String.format(
+                "%-30s Rate: %-10d Due Date: %-15s Paid: %-12b Overdue: %-12b",
+                "Name: " + name, rate, dueDate, paid, isOverDue
+        );
     }
 }
