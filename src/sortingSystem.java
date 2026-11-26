@@ -18,6 +18,13 @@ public class sortingSystem implements Comparator<Result> {
         if (compareTime != 0){
             return compareTime;
         }
+        
+        String name1 = result1.getMember().getName();
+        String name2 = result2.getMember().getName();
+        int compareName = collator.compare(name1, name2);
+        if (compareName != 0){
+            return compareName;
+        }
         return 0;
     }
 }
