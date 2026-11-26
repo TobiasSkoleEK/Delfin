@@ -32,6 +32,14 @@ public class sortingSystem implements Comparator<Result> {
         if (compareDiscipline != 0){
             return compareDiscipline;
         }
-        return 0;
+
+        int compareDate = result1.getDate().compareTo(result2.getDate());
+        if (compareDate != 0){
+            return compareDate;
+        }
+
+        String event1 = result1.getEvent();
+        String event2 = result2.getEvent();
+        return collator.compare(event1, event2);
     }
 }
