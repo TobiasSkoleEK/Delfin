@@ -226,37 +226,89 @@ public class ConsoleUI {
         IO.println("1. Competitive Teams");
         IO.println("2. View Training Results");
         IO.println("3. Events ");
-
-        switch (input()) {
+        String input = IO.readln("Input: ");
+        switch (input) {
             case "1" -> competetiveTeamsMenu();
+         //   case "2" -> displayTrainingResults();
+         //   case "3" -> displayEvents();
+            default -> IO.println("Invalid Command");
             }
         }
 
     private void competetiveTeamsMenu() {
-        IO.println("/// Competetive Teams///");
+        IO.println("/// Team Management ///");
         IO.println("1. Move Member to a Team");
         IO.println("0. Go back");
-
-        if (input().equals("1")) {
-            try {
-                IO.println("Enter member name: ");
-                String name = input();
-                int memberID = delfin.findMemberId(name);
-
-                IO.println("Select team that suits: ");
-                IO.println("0: Unassigned | 1: Junior Crawl | 2: Junior Backcrawl | 3: Junior Butterfly | 4: Junior BreastStroke\n 5: Senior Crawl | 6: Senior Backcrawl | 7: Senior Butterfly | Senior Breaststroke ");
-
-                int teamID = Integer.parseInt(input());
-                Team chosenTeam = delfin.findTeam(teamID);
-
-                delfin.moveTeamMember(memberID, chosenTeam);
-                IO.println("Member is moved succesfully");
-
-            }   catch (Exception e) {
-                IO.println("Error");
+        // Du behøver ikke at bruge IF sætninger her, da det er en menu, istedet for IF kan vi lave en nu menu.
+        String input = IO.readln("Input: ");    // denne line læser et input og opretter en variable der hedder input
+        // Her læser switch metoden vores input,
+        int memberID = 0;
+        switch (input) {                        // Det her svarer til if(input().equals("1")) men det er meget nemmere ikke?
+            case "1" -> moveMember();
+            case "2" -> viewMembers();
+            case "3" -> viewTeams();
+            case "b" -> displayCompetition();
+            default -> {
+                IO.println("Invalid command");
+                competetiveTeamsMenu();
             }
+
+
         }
     }
+
+//        if (input().equals("1")) {
+//            try {
+//                IO.println("Enter member name: ");
+//                String name = input();
+//
+//                IO.println("Select team that suits: ");
+//                IO.println("0: Unassigned | 1: Junior Crawl | 2: Junior Backcrawl | 3: Junior Butterfly | 4: Junior BreastStroke\n 5: Senior Crawl | 6: Senior Backcrawl | 7: Senior Butterfly | Senior Breaststroke ");
+//
+//                int teamID = Integer.parseInt(input());
+//                Team chosenTeam = delfin.findTeam(teamID);
+//
+//                delfin.moveTeamMember(memberID, chosenTeam);
+//                IO.println("Member is moved succesfully");
+//
+//            }   catch (Exception e) {
+//                IO.println("Error");
+//            }
+//        }
+
+
+    private void moveMember(){
+
+        int memberID = Integer.parseInt(IO.readln("Input Member ID : "));
+        int teamID = Integer.parseInt(IO.readln("Input ID of team member will be moved to : "));
+        delfin.moveTeamMember(memberID, delfin.findTeam(teamID));
+    }
+
+    private void viewTeams(){ // This method finds teams then allows to view members on a team chosen.
+        // This method requires a IO print to display the names of each team.
+
+        IO.println("/// Teams ///");
+
+        for (Team team : delfin.getTeamList())
+            IO.println(team);
+
+        String input = IO.readln(" View Team? y/n").trim().toLowerCase();
+        switch (input) {
+            default -> viewTeams();
+            case "y" -> {
+                int input2 = Integer.parseInt(IO.readln("Input Team ID: ").trim());
+                IO.println("Team " + input2);
+                for (Member member : delfin.findTeam(input2).memberList) {
+                    IO.println(member);
+                }
+                viewTeams();
+            }
+            case "n" -> competetiveTeamsMenu();
+
+        }
+    }
+
+
 
     private String input() {
         return IO.readln("Input: ").toLowerCase().trim();
